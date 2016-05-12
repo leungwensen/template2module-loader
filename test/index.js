@@ -1,4 +1,4 @@
-var greetingTpl = require('./greeting.html');
+var greetingTpl = require('./greeting.tpl');
 
 console.log(greetingTpl({
     name: 'leungwensen',

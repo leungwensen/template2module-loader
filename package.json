@@ -24,6 +24,9 @@
   },
   "homepage": "https://github.com/leungwensen/template2module-loader#readme",
   "dependencies": {
-    "template2module": "0.0.20160409"
+    "loader-utils": "^0.2.14",
+    "template2module": "0.0.20160409",
+    "underscore": "^1.8.3",
+    "zero-lang": "0.0.20151202"
   }
 }

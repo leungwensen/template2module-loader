@@ -1,26 +1,31 @@
+var path = require('path');
+
 module.exports = {
     entry: {
-        'index': path.resolve(__dirname, './test/index.js'),
+        'index': path.resolve(__dirname, './test/index.js')
     },
     output: {
         path: path.resolve(__dirname, './dist'),
         filename: '[name].js'
     },
+    resolveLoader: {
+        alias: {
+            'template2module-loader': path.resolve('./index')
+        }
+    },
     module: {
         loaders: [
             {
-                test: /\.(apl|html|tpl|ztpl)(\?.+)?$/,
+                test: /\.(html|tpl)$/,
                 loader: 'template2module-loader',
                 exclude: /demo/,
                 query: {
                     engine: 'underscore',
                     format: 'commonjs',
                     outerScopeVars: [
-                        'translate',
                         '_'
                     ],
                     preOuterScope: [
-                        'var translate = require("zero-text/i18n").translate;',
                         'var _ = require("underscore");'
                     ].join('\n')
                 }

@@ -24,23 +24,37 @@
  * }]
  */
 
-var tpl2mod = require('template2module');
 var lang = require('zero-lang');
+var loaderUtils = require('loader-utils');
+var tpl2mod = require('template2module');
 
-module.exports = function (content) {
-    var self = this;
-    var query = self.query;
-    var tplEngine = tpl2mod.engines[query.engine] || tpl2mod.engines.zero;
-    var modFormat = query.format || 'commonjs';
-    var preOuterScope = query.preOuterScope || '';
+module.exports = function (source) {
+    var loaderContext = this;
 
-    lang.each(query.outerScopeVars || [], function (name) {
+    var loaderOptions = loaderUtils.parseQuery(loaderContext.query);
+    var userOptions = loaderContext.options['template2module-loader'];
+    var defaultOptions = {
+        engine: 'underscore',
+        format: 'commonjs',
+        outerScopeVars: [],
+        preOuterScope: 'var _ = require("underscore");',
+    };
+
+    var options = lang.extend({}, defaultOptions, loaderOptions, userOptions);
+
+    loaderContext.cacheable && loaderContext.cacheable();
+
+    var tplEngine = tpl2mod.engines[options.engine] || tpl2mod.engines.underscore;
+    var modFormat = options.format || 'commonjs';
+    var preOuterScope = options.preOuterScope;
+
+    lang.each(options.outerScopeVars || [], function (name) {
         tplEngine.outerScopeVars[name] = true;
     });
     tplEngine.render = function (str, moduleName) {
-        var resultStr = Engine.prototype.render.call(this, str, moduleName, modFormat);
+        var resultStr = tpl2mod.Engine.prototype.render.call(this, str, moduleName, modFormat);
         return preOuterScope + resultStr;
     };
-    return tplEngine.render(content);
+    return tplEngine.render(source);
 };
 
