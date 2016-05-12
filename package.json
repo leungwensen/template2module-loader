@@ -1,0 +1,29 @@
+{
+  "name": "template2module-loader",
+  "version": "0.0.20160512",
+  "description": "a webpack loader based on template2module, supports multiple template engines, generates high performance code. ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leungwensen/template2module-loader.git"
+  },
+  "keywords": [
+    "template",
+    "template",
+    "engine",
+    "template2module",
+    "module"
+  ],
+  "author": "leungwensen@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/leungwensen/template2module-loader/issues"
+  },
+  "homepage": "https://github.com/leungwensen/template2module-loader#readme",
+  "dependencies": {
+    "template2module": "0.0.20160409"
+  }
+}
