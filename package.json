@@ -1,6 +1,6 @@
 {
   "name": "template2module-loader",
-  "version": "0.0.20160512",
+  "version": "0.0.20160513",
   "description": "a webpack loader based on template2module, supports multiple template engines, generates high performance code. ",
   "main": "index.js",
   "scripts": {
