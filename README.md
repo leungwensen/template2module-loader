@@ -96,3 +96,5 @@ usage: in `src/entry.js`
 var greetingTpl = require('./greeting.tpl');
 ```
 
+see [test](./test) and [webpack.config.js](./webpack.config.js) for more details.
+
